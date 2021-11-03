@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
-import com.example.afinal.board.FreeBoardActivity
-import com.example.afinal.databinding.FragmentClassBinding
 import com.example.afinal.databinding.FragmentMapBinding
-import com.example.afinal.map.MapsActivity
 
 
 class MapFragment : Fragment() {
