@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
 import com.example.afinal.databinding.FragmentMapBinding
+import com.example.afinal.MapsActivity
+import com.example.afinal.map.RestaurantActivity
 
 
 class MapFragment : Fragment() {
@@ -26,7 +28,12 @@ class MapFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_map,container,false)
 
 
-        binding.mapBtn.setOnClickListener{
+        binding.ResBtn.setOnClickListener{
+            val intent = Intent(getActivity(), RestaurantActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.MapBtn.setOnClickListener{
             val intent = Intent(getActivity(), MapsActivity::class.java)
             startActivity(intent)
         }

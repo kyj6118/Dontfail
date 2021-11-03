@@ -10,15 +10,48 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_marginTop="80dp"
-            android:layout_width="wrap_content"
+
+        <Button
+            android:id="@+id/ResBtn"
+            android:text="Restaurant"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/radious_maincolor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/map_"
-            android:id="@+id/mapBtn"
             tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/DiaryBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radious_maincolor"
+            android:text="Tour"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/ResBtn"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <Button
+            android:id="@+id/MapBtn"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radious_maincolor"
+            android:text="Map"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/DiaryBtn"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+
 
 
 
