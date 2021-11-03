@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="board modify"
+        android:layout_margin="20dp"
+        android:background="@drawable/radious_maincolor"/>
+
+    <Button
+        android:id="@+id/deletBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="board delet"
+        android:layout_margin="20dp"
+        android:background="@drawable/radious_maincolor"/>
+
+
+
+
+</LinearLayout>
+
