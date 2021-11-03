@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
 import com.example.afinal.Schdule.CourseActivity
+import com.example.afinal.Schdule.CourseMainActivity
 import com.example.afinal.Schdule.MyDiaryActivity
 import com.example.afinal.board.FreeBoardActivity
 import com.example.afinal.databinding.FragmentClassBinding
@@ -32,7 +33,7 @@ class ClassFragment : Fragment() {
 
         binding.CourseBtn.setOnClickListener{
 
-            val intent = Intent(getActivity(), CourseActivity::class.java)
+            val intent = Intent(getActivity(), CourseMainActivity::class.java)
             startActivity(intent)
         }
 

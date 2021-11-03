@@ -9,6 +9,50 @@
     android:layout_height="match_parent"
     tools:context=".fragmants.HomeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="65dp">
+
+
+    <ImageView
+            android:id="@+id/noticeView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/notice"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notice"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/noticeView"
+            tools:ignore="MissingConstraints" />
+
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/com_"
+            app:layout_constraintStart_toEndOf="@+id/noticeView"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="64dp"
+            android:src="@drawable/class_"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            android:layout_marginLeft="20dp"
+            tools:ignore="MissingConstraints" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"

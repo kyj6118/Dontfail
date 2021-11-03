@@ -4,7 +4,8 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ListView
+import android.view.View
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import com.example.afinal.R
 import com.example.afinal.databinding.ActivityCourseBinding
@@ -26,6 +27,17 @@ class CourseActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var listView: ListView
 
+    private var yearAdapter: ArrayAdapter<*>? = null
+    private var yearSpinner: Spinner? = null
+    private var termAdapter: ArrayAdapter<*>? = null
+    private var termSpinner: Spinner? = null
+    private var areaAdapter: ArrayAdapter<*>? = null
+    private var areaSpinner: Spinner? = null
+    private var majorAdapter: ArrayAdapter<*>? = null
+    private var majorSpinner: Spinner? = null
+
+    private var courseUniversity = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
@@ -42,6 +54,12 @@ class CourseActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
+
+
+
+
+
+
         getFBNoticeData()
     }
 
