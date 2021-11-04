@@ -10,5 +10,6 @@ var coursePersonnel : String? = null,
 var courseProfessor : String? = null,
 var courseRoom : String? = null,
 var courseTime : String? = null,
-var courseTitle : String? = null)
+var courseTitle : String? = null,
+var courseID : String? = null)
 

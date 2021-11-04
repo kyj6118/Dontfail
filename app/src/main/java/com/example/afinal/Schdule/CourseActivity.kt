@@ -58,8 +58,6 @@ class CourseActivity : AppCompatActivity() {
 
 
 
-
-
         getFBNoticeData()
     }
 
@@ -96,5 +94,7 @@ class CourseActivity : AppCompatActivity() {
 
             }
     }
+
+
 
 }
