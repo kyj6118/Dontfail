@@ -1,5 +1,6 @@
 package com.example.afinal.fragmants
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
 import com.example.afinal.databinding.FragmentHomeBinding
+import com.example.afinal.notice.NoticeActivity
 
 
 /**
@@ -34,6 +36,13 @@ class HomeFragment : Fragment() {
 
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
+
+        binding.noticeView.setOnClickListener{
+
+            val intent = Intent(getActivity(), NoticeActivity::class.java)
+            startActivity(intent)
+
+        }
 
 
         binding.comTap.setOnClickListener{

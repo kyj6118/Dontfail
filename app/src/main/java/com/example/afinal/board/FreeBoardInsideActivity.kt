@@ -65,6 +65,9 @@ class FreeBoardInsideActivity : AppCompatActivity() {
         key = intent.getStringExtra("key").toString()
         boardData(key.toString())
         getImageData(key.toString())
+        getImageData2(key.toString())
+        getImageData3(key.toString())
+        getImageData4(key.toString())
         getCommentData(key.toString())
 
         commentAdapter = CommentLVAdapter(commentDataList)
@@ -228,7 +231,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
     private fun getImageData(key: String) {
 
         // Reference to an image file in Cloud Storage
-        val storageReference = Firebase.storage.reference.child(key + ".png")
+        val storageReference = Firebase.storage.reference.child(key + "1")
 
         // ImageView in your Activity
         val imageViewFromFB = binding.getImageArea
@@ -243,6 +246,75 @@ class FreeBoardInsideActivity : AppCompatActivity() {
             } else {
 
                 binding.getImageArea.isVisible = false
+
+            }
+        })
+    }
+
+    private fun getImageData2(key: String) {
+
+        // Reference to an image file in Cloud Storage
+        val storageReference = Firebase.storage.reference.child(key + "2")
+
+        // ImageView in your Activity
+        val imageViewFromFB = binding.getImageArea1
+
+        storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB)
+
+            } else {
+
+                binding.getImageArea1.isVisible = false
+
+            }
+        })
+    }
+
+    private fun getImageData3(key: String) {
+
+        // Reference to an image file in Cloud Storage
+        val storageReference = Firebase.storage.reference.child(key + "3")
+
+        // ImageView in your Activity
+        val imageViewFromFB = binding.getImageArea2
+
+        storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB)
+
+            } else {
+
+                binding.getImageArea2.isVisible = false
+
+            }
+        })
+    }
+
+    private fun getImageData4(key: String) {
+
+        // Reference to an image file in Cloud Storage
+        val storageReference = Firebase.storage.reference.child(key + "4")
+
+        // ImageView in your Activity
+        val imageViewFromFB = binding.getImageArea3
+
+        storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB)
+
+            } else {
+
+                binding.getImageArea3.isVisible = false
 
             }
         })

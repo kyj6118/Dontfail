@@ -95,6 +95,26 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
 
+
+    <ImageView
+        android:id="@+id/getImageArea1"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+    <ImageView
+        android:id="@+id/getImageArea2"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+    <ImageView
+        android:id="@+id/getImageArea3"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+
     <ListView
         android:id="@+id/CommentListView"
         android:layout_width="match_parent"

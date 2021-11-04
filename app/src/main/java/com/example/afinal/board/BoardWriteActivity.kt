@@ -97,23 +97,22 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
 
+
             db.collection("board")
                 .document(key)
                 .set(board)
                 .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }
                 .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error writing document", e) }
 
+
+
+
+            imageUpload1(key)
+            imageUpload2(key)
+            imageUpload3(key)
+            imageUpload4(key)
+
             Toast.makeText(this,"Sucess write board",Toast.LENGTH_LONG).show()
-            finish()
-
-            Toast.makeText(this, "게시글 입력 완료", Toast.LENGTH_LONG).show()
-
-            if(isImageUpload1 == true ) {
-                imageUpload1(key)
-                imageUpload2(key)
-            }
-
-
             finish()
 
 
@@ -128,10 +127,22 @@ class BoardWriteActivity : AppCompatActivity() {
 
         binding.imageArea2.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, 200)
+            startActivityForResult(gallery, 99)
+        }
+
+        binding.imageArea3.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 98)
+        }
+
+
+        binding.imageArea4.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 97)
         }
 
     }
+
 
 
     private fun imageUpload1(key : String){
@@ -140,7 +151,7 @@ class BoardWriteActivity : AppCompatActivity() {
         val storage = Firebase.storage
         val storageRef = storage.reference
         firestore = FirebaseFirestore.getInstance()
-        val mountainsRef = storageRef.child(key+"one")
+        val mountainsRef = storageRef.child(key+"1")
 
         val imageView = binding.imageArea1
         imageView.isDrawingCacheEnabled = true
@@ -168,14 +179,14 @@ class BoardWriteActivity : AppCompatActivity() {
         val storage = Firebase.storage
         val storageRef = storage.reference
         firestore = FirebaseFirestore.getInstance()
-        val mountainsRef = storageRef.child(key+"two")
+        val mountainsRef = storageRef.child(key+"2")
 
         val imageView2 = binding.imageArea2
         imageView2.isDrawingCacheEnabled = true
         imageView2.buildDrawingCache()
         val bitmap2 = (imageView2.drawable as BitmapDrawable).bitmap
         val baos2 = ByteArrayOutputStream()
-        bitmap2.compress(Bitmap.CompressFormat.JPEG, 200, baos2)
+        bitmap2.compress(Bitmap.CompressFormat.JPEG, 99, baos2)
         val data = baos2.toByteArray()
 
         var uploadTask = mountainsRef.putBytes(data)
@@ -188,6 +199,55 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
     }
+
+    private fun imageUpload3(key: String) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        firestore = FirebaseFirestore.getInstance()
+        val mountainsRef = storageRef.child(key+"3")
+
+        val imageView3 = binding.imageArea3
+        imageView3.isDrawingCacheEnabled = true
+        imageView3.buildDrawingCache()
+        val bitmap2 = (imageView3.drawable as BitmapDrawable).bitmap
+        val baos2 = ByteArrayOutputStream()
+        bitmap2.compress(Bitmap.CompressFormat.JPEG, 98, baos2)
+        val data = baos2.toByteArray()
+
+        var uploadTask = mountainsRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
+    }
+
+
+    private fun imageUpload4(key: String) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        firestore = FirebaseFirestore.getInstance()
+        val mountainsRef = storageRef.child(key+"4")
+
+        val imageView4 = binding.imageArea4
+        imageView4.isDrawingCacheEnabled = true
+        imageView4.buildDrawingCache()
+        val bitmap2 = (imageView4.drawable as BitmapDrawable).bitmap
+        val baos2 = ByteArrayOutputStream()
+        bitmap2.compress(Bitmap.CompressFormat.JPEG, 97, baos2)
+        val data = baos2.toByteArray()
+
+        var uploadTask = mountainsRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
+    }
+
+
 
 
 
@@ -203,9 +263,16 @@ class BoardWriteActivity : AppCompatActivity() {
         if(resultCode == RESULT_OK && requestCode == 100) {
             binding.imageArea1.setImageURI(data?.data)
         }
-        if(resultCode == RESULT_OK && requestCode == 200) {
+        if(resultCode == RESULT_OK && requestCode == 99) {
             binding.imageArea2.setImageURI(data?.data)
         }
+        if(resultCode == RESULT_OK && requestCode == 98) {
+            binding.imageArea3.setImageURI(data?.data)
+        }
+        if(resultCode == RESULT_OK && requestCode == 97) {
+            binding.imageArea4.setImageURI(data?.data)
+        }
+
 
 
     }
