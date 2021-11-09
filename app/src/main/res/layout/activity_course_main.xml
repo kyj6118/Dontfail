@@ -74,6 +74,7 @@
                 android:gravity="center"
                 android:textColor="#ffffff"
                 android:textStyle="bold"/>
+
             <TextView
                 android:text="Fri"
                 android:layout_width="wrap_content"
@@ -197,6 +198,8 @@
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue2"/>
+
+
             <TextView
                 android:text="Tur"
                 android:layout_width="wrap_content"
@@ -269,16 +272,18 @@
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue3"/>
+
             <TextView
-                android:text="Tur"
+                android:id="@+id/wed3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
                 android:background="@drawable/cell_shape"
-                android:id="@+id/wed3"/>
+                android:gravity="center"
+                android:text="Tur"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
             <TextView
                 android:text="Fri"
                 android:layout_width="wrap_content"
