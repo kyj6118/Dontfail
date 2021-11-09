@@ -116,43 +116,39 @@
                 android:id="@+id/mon1"
                 />
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue1"/>
             <TextView
-                android:text="Tur"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/wed1"/>
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur1"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri1"
@@ -189,45 +185,41 @@
                 android:background="@drawable/cell_shape"
                 android:id="@+id/mon2"/>
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue2"/>
 
 
             <TextView
-                android:text="Tur"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/wed2"/>
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur2"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri2"
@@ -263,12 +255,11 @@
                 android:background="@drawable/cell_shape"
                 android:id="@+id/mon3"/>
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue3"/>
@@ -280,28 +271,25 @@
                 android:layout_weight="3"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:text="Tur"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur3"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri3"
@@ -336,43 +324,39 @@
                 android:background="@drawable/cell_shape"
                 android:id="@+id/mon4"/>
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue4"/>
             <TextView
-                android:text="Tur"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/wed4"/>
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur4"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri4"
@@ -409,43 +393,39 @@
                 android:background="@drawable/cell_shape"
                 android:id="@+id/mon5"/>
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue5"/>
             <TextView
-                android:text="Tur"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/wed5"/>
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur5"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri5"
@@ -480,43 +460,39 @@
                 android:background="@drawable/cell_shape"
                 android:id="@+id/mon6"/>
             <TextView
-                android:text="Wend"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/tue6"/>
             <TextView
-                android:text="Tur"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/wed6"/>
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/thur6"
                 />
             <TextView
-                android:text="Fri"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:background="@drawable/cell_shape"
                 android:id="@+id/fri6"

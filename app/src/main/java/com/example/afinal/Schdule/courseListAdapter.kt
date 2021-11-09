@@ -18,7 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.app.Activity
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import com.example.afinal.R
+import com.example.afinal.VO.board
+import com.example.afinal.board.FreeBoardInsideActivity
 import android.widget.Toast.makeText as makeText1
 
 
@@ -26,6 +30,7 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
     var firestore : FirebaseFirestore? = null
     private lateinit var auth: FirebaseAuth
+    private val CourseKeyList = mutableListOf<String>()
 
 
 
@@ -65,7 +70,9 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
         val courseDivide = view?.findViewById<TextView>(com.example.afinal.R.id.courseDivide)
         val coursePersonnel = view?.findViewById<TextView>(com.example.afinal.R.id.coursePersonnel)
         val courseProfessor = view?.findViewById<TextView>(com.example.afinal.R.id.courseProfessor)
-        val courseTime = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime)
+        val courseTime1 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime1)
+        val courseTime2 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime2)
+        val courseTime3 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime3)
 
 
 
@@ -75,20 +82,27 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
         courseDivide!!.text=course.courseDivide
         coursePersonnel!!.text=course.coursePersonnel
         courseProfessor!!.text=course.courseProfessor
-        courseTime!!.text=course.courseTime
+        courseTime1!!.text=course.courseTime1
+        courseTime2!!.text=course.courseTime2
+        courseTime3!!.text=course.courseTime3
 
 
 
         Button!!.setOnClickListener{
 
+
             val email = FBAuth.getemail()
             val key = FBRef.CourseRef.push().key.toString()
+
 
 
             val mycourse = hashMapOf(
                 "email" to email,
                 "courseTitle" to course.courseTitle.toString(),
-                "courseTime" to course.courseTime.toString()
+                "courseTime1" to course.courseTime1.toString(),
+                "courseTime2"  to course.courseTime2.toString(),
+                "courseTime3"  to course.courseTime3.toString()
+
 
 
             )
@@ -100,7 +114,11 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
                 .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }
                 .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error writing document", e) }
 
+
         }
+
+
+
 
 
 

@@ -20,6 +20,7 @@ class CourseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCourseBinding
     private val courseDataList = mutableListOf<course>()
+    private val CourseKeyList = mutableListOf<String>()
 
 
     private lateinit var courseAdater: courseListAdapter
@@ -82,7 +83,9 @@ class CourseActivity : AppCompatActivity() {
                             document["coursePersonnel"].toString(),
                             document["courseProfessor"].toString(),
                             document["courseRoom"].toString(),
-                            document["courseTime"].toString(),
+                            document["courseTime1"].toString(),
+                            document["courseTime2"].toString(),
+                            document["courseTime3"].toString(),
                             document["courseTitle"].toString()
                         )
                     )
@@ -93,6 +96,8 @@ class CourseActivity : AppCompatActivity() {
 
 
             }
+
+
     }
 
 
