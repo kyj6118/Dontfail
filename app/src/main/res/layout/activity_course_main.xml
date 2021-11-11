@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,17 +9,35 @@
     tools:context=".Schdule.CourseMainActivity"
     android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/CoursePlusBtn"
-        android:background="@drawable/radious_maincolor"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:src="@drawable/plusbtn"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="350dp"/>
+
+        <ImageView
+            android:id="@+id/storageBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radious_maincolor"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/storage"
+            app:layout_constraintEnd_toStartOf="@+id/CoursePlusBtn"
+            tools:ignore="MissingConstraints" />
+
+
+        <ImageView
+            android:id="@+id/CoursePlusBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radious_maincolor"
+            android:src="@drawable/plusbtn"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TableLayout
         android:layout_marginTop="20dp"
@@ -515,3 +534,5 @@
 
 
 </LinearLayout>
+
+</layout>

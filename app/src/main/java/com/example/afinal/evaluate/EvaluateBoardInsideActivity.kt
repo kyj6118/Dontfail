@@ -35,6 +35,7 @@ class EvaluateBoardInsideActivity : AppCompatActivity() {
     private lateinit var evaluateAdater: EvaluateListAdater
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_board_inside)
