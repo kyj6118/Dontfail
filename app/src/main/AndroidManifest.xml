@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.afinal">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -18,11 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final">
-        <activity android:name=".Schdule.DeletCourseInsideActivity"></activity>
-        <activity android:name=".Schdule.MyCourseActivity" />
-        <activity android:name=".Schdule.CourseModifyActivity" />
-        <activity android:name=".notice.NoticeActivity" />
-        <activity android:name=".Schdule.CourseMainActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,8 +33,23 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"></activity>
+        <activity
+            android:name=".EampleActivity"
+            android:label="@string/title_activity_eample"
+            android:theme="@style/Theme.Final.NoActionBar" />
+        <activity
             android:name=".MapsActivity2"
             android:label="@string/title_activity_maps2" />
+        <activity
+            android:name=".ExampleMapActivity"
+            android:label="@string/title_activity_example_map" />
+        <activity android:name=".Schdule.DeletCourseInsideActivity" />
+        <activity android:name=".Schdule.MyCourseActivity" />
+        <activity android:name=".Schdule.CourseModifyActivity" />
+        <activity android:name=".notice.NoticeActivity" />
+        <activity android:name=".Schdule.CourseMainActivity" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />

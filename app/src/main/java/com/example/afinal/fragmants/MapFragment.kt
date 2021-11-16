@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
+import com.example.afinal.TestActivity
 import com.example.afinal.databinding.FragmentMapBinding
-import com.example.afinal.MapsActivity
 import com.example.afinal.map.RestaurantActivity
 
 
@@ -34,7 +34,7 @@ class MapFragment : Fragment() {
         }
 
         binding.MapBtn.setOnClickListener{
-            val intent = Intent(getActivity(), MapsActivity::class.java)
+            val intent = Intent(getActivity(), TestActivity::class.java)
             startActivity(intent)
         }
 

@@ -26,6 +26,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
+
+
+
     val permission = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
@@ -123,7 +126,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-        //로케이션 요청ㄹ 함수 (locationRequest,locationCallback
+        //로케이션 요청 함수 (locationRequest,locationCallback
         fusedLocationClient.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
 
 
