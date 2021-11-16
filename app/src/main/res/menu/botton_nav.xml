@@ -9,14 +9,14 @@
         app:showAsAction="ifRoom"/>
 
 
-    <item android:id="@+id/action_Tour"
+    <item android:id="@+id/action_tour"
         android:enabled="true"
         android:title="Tour"
         android:icon="@drawable/ic_baseline_tour_24"
         app:showAsAction="ifRoom"/>
 
 
-    <item android:id="@+id/action_Hospital"
+    <item android:id="@+id/action_hospital"
         android:enabled="true"
         android:title="Hospital"
         android:icon="@drawable/ic_baseline_local_hospital_24"

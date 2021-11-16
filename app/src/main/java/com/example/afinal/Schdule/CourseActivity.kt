@@ -73,6 +73,8 @@ class CourseActivity : AppCompatActivity() {
                 Log.d(ContentValues.TAG, "DocumentSnapshot data: ${courseDataList.toString()}")
                 for (document in result) {
 
+                    Log.d(ContentValues.TAG,"${document["courseColor"].toString()}")
+
 
                     courseDataList.add(
                         course(
@@ -86,7 +88,8 @@ class CourseActivity : AppCompatActivity() {
                             document["courseTime1"].toString(),
                             document["courseTime2"].toString(),
                             document["courseTime3"].toString(),
-                            document["courseTitle"].toString()
+                            document["courseTitle"].toString(),
+                            document["courseColor"].toString()
                         )
                     )
 

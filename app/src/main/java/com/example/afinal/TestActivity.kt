@@ -7,10 +7,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.afinal.Common.Common
+import com.example.afinal.Remote.IGoogleAPIService
+import com.example.afinal.VO.MyPlaces
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,6 +26,10 @@ import com.example.afinal.databinding.ActivityTestBinding
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
+import retrofit2.Call
+import retrofit2.Response
+import java.lang.StringBuilder
+import javax.security.auth.callback.Callback
 
 class TestActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -44,6 +52,10 @@ class TestActivity : AppCompatActivity(), OnMapReadyCallback {
 }
 
 
+lateinit var mService:IGoogleAPIService
+internal lateinit var currentPlaces: MyPlaces
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +67,9 @@ class TestActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        mService = Common.googleApiService
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             if(checkLocationPermission()) {
@@ -80,6 +95,86 @@ class TestActivity : AppCompatActivity(), OnMapReadyCallback {
                     locationCallback,
                     Looper.myLooper())
             }
+
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            item ->
+            when(item.itemId){
+
+                R.id.action_hospital -> nearByPlace("hospital")
+                R.id.action_tour -> nearByPlace("tour")
+                R.id.action_restaurant -> nearByPlace("restaurant")
+
+            }
+            true
+        }
+
+    }
+
+    private fun nearByPlace(typePlace: String) {
+        mMap.clear()
+        val url = getUrl(latitude,longitude,typePlace)
+
+        mService.getNearbyPlaces(url)
+            .enqueue(object : retrofit2.Callback<MyPlaces> {
+                override fun onResponse(call: Call<MyPlaces>, response: Response<MyPlaces>) {
+                    currentPlaces = response.body()!!
+                    if (response.isSuccessful) {
+
+                        for (i in 0 until response.body()!!.result!!.size)
+                        {
+                            val markerOptions = MarkerOptions()
+                            val googlePlace = response.body()!!.result!![i]
+                            val lat = googlePlace.geometry!!.location!!.lat
+                            val lng = googlePlace.geometry!!.location!!.lng
+                            val placeName = googlePlace.name
+                            val latLng = LatLng(lat, lng)
+
+                            markerOptions.position(latLng)
+                            markerOptions.title(placeName)
+                            if (typePlace.equals("hospital"))
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital))
+                            else if (typePlace.equals("tour"))
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_tour))
+                            if (typePlace.equals("restaurant"))
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_restaurant))
+                            else
+                                markerOptions.icon(
+                                    BitmapDescriptorFactory.defaultMarker(
+                                        BitmapDescriptorFactory.HUE_BLUE
+                                    )
+                                )
+
+
+                            markerOptions.snippet(i.toString())
+
+                            //Add marker to map
+                            mMap!!.addMarker(markerOptions)
+                            //move camera
+                            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
+
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<MyPlaces>, t: Throwable) {
+                    Toast.makeText(baseContext,""+t!!.message,Toast.LENGTH_SHORT).show()
+                }
+
+            })
+    }
+
+    private fun getUrl(latitude: Double, longitude: Double, typePlace: String): String {
+
+        val googlePlaceUrl= StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+        googlePlaceUrl.append("?location=$latitude,$longitude")
+        googlePlaceUrl.append("&radius=10000")
+        googlePlaceUrl.append("&type=$typePlace")
+        googlePlaceUrl.append("&key=AIzaSyAEHJx5j_CUnp6jRgzLe3hoPiPVgLtxWrA")
+
+        Log.d("URL_DEBUG",googlePlaceUrl.toString())
+        return googlePlaceUrl.toString()
+
     }
 
     private fun buildLocationCallback() {

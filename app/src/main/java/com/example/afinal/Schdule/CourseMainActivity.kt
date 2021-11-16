@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -360,77 +361,98 @@ class CourseMainActivity : AppCompatActivity() {
                 val time2 =dataModel!!.courseTime2
                 val time3 =dataModel!!.courseTime3
                 val title = dataModel!!.courseTitle
+                val color = dataModel!!.courseColor
 
 
 
                 when(time1){
                     "mon1"->{
                         mon1.text = title
+                        mon1.setBackgroundColor(Color.parseColor(color))
+
+
 
                     }
                     "mon2"->{
                         mon2.text = title
+                        mon2.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon3"->{
                         mon3.text = title
+                        mon3.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon4"->{
                         mon4.text = title
+                        mon4.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon5"->{
                         mon5.text = title
+                        mon5.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon6"->{
                         mon6.text = title
+                        mon6.setBackgroundColor(Color.parseColor(color))
 
                     }
                     "tue1" ->{
                         tue1.text = title
+                        tue1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "tue2" ->{
                         tue2.text = title
+                        tue2.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue3" ->{
                         tue3.text = title
+                        tue3.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue4" ->{
                         tue4.text = title
+                        tue4.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue5" ->{
                         tue5.text = title
+                        tue5.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue6" ->{
                         tue6.text = title
+                        tue6.setBackgroundColor(Color.parseColor(color))
                     }
 
 
                     "fri1" ->{
                         fri1.text = title
+                        fri1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "fri2" ->{
                         fri2.text = title
+                        fri2.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri3" ->{
                         fri3.text = title
+                        fri3.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri4" ->{
                         fri4.text = title
+                        fri4.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri5" ->{
                         fri5.text = title
+                        fri5.setBackgroundColor(Color.parseColor(color))
                     }
                     "fir6" ->{
                         fri6.text = title
+                        fri6.setBackgroundColor(Color.parseColor(color))
                     }
 
 
@@ -438,146 +460,191 @@ class CourseMainActivity : AppCompatActivity() {
                 }
 
                 when(time2){
-
                     "mon1"->{
                         mon1.text = title
+                        mon1.setBackgroundColor(Color.parseColor(color))
+
+
 
                     }
                     "mon2"->{
                         mon2.text = title
+                        mon2.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon3"->{
                         mon3.text = title
+                        mon3.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon4"->{
                         mon4.text = title
+                        mon4.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon5"->{
                         mon5.text = title
+                        mon5.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon6"->{
                         mon6.text = title
+                        mon6.setBackgroundColor(Color.parseColor(color))
 
                     }
-
                     "tue1" ->{
                         tue1.text = title
+                        tue1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "tue2" ->{
                         tue2.text = title
+                        tue2.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue3" ->{
                         tue3.text = title
+                        tue3.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue4" ->{
                         tue4.text = title
+                        tue4.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue5" ->{
                         tue5.text = title
+                        tue5.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue6" ->{
                         tue6.text = title
+                        tue6.setBackgroundColor(Color.parseColor(color))
                     }
+
+
                     "fri1" ->{
                         fri1.text = title
+                        fri1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "fri2" ->{
                         fri2.text = title
+                        fri2.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri3" ->{
                         fri3.text = title
+                        fri3.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri4" ->{
                         fri4.text = title
+                        fri4.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri5" ->{
                         fri5.text = title
+                        fri5.setBackgroundColor(Color.parseColor(color))
                     }
                     "fir6" ->{
                         fri6.text = title
+                        fri6.setBackgroundColor(Color.parseColor(color))
                     }
+
+
+
                 }
 
 
                 when(time3){
-
                     "mon1"->{
                         mon1.text = title
+                        mon1.setBackgroundColor(Color.parseColor(color))
+
+
 
                     }
                     "mon2"->{
                         mon2.text = title
+                        mon2.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon3"->{
                         mon3.text = title
+                        mon3.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon4"->{
                         mon4.text = title
+                        mon4.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon5"->{
                         mon5.text = title
+                        mon5.setBackgroundColor(Color.parseColor(color))
 
                     }
 
                     "mon6"->{
                         mon6.text = title
+                        mon6.setBackgroundColor(Color.parseColor(color))
 
                     }
-
                     "tue1" ->{
                         tue1.text = title
+                        tue1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "tue2" ->{
                         tue2.text = title
+                        tue2.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue3" ->{
                         tue3.text = title
+                        tue3.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue4" ->{
                         tue4.text = title
+                        tue4.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue5" ->{
                         tue5.text = title
+                        tue5.setBackgroundColor(Color.parseColor(color))
                     }
                     "tue6" ->{
                         tue6.text = title
+                        tue6.setBackgroundColor(Color.parseColor(color))
                     }
+
+
                     "fri1" ->{
                         fri1.text = title
+                        fri1.setBackgroundColor(Color.parseColor(color))
                     }
 
                     "fri2" ->{
                         fri2.text = title
+                        fri2.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri3" ->{
                         fri3.text = title
+                        fri3.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri4" ->{
                         fri4.text = title
+                        fri4.setBackgroundColor(Color.parseColor(color))
                     }
                     "fri5" ->{
                         fri5.text = title
+                        fri5.setBackgroundColor(Color.parseColor(color))
                     }
                     "fir6" ->{
                         fri6.text = title
+                        fri6.setBackgroundColor(Color.parseColor(color))
                     }
+
+
 
                 }
 

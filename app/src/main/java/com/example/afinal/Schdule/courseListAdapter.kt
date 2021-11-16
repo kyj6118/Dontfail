@@ -39,7 +39,7 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
     private  var Xtitle: String? = null
     private  var Xtime: String? = null
-
+    private  var Xcolor: String? =null
 
 
     override fun getCount(): Int {
@@ -81,6 +81,10 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
         val courseTime1 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime1)
         val courseTime2 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime2)
         val courseTime3 = view?.findViewById<TextView>(com.example.afinal.R.id.courseTime3)
+        val courseColor = view?.findViewById<TextView>(com.example.afinal.R.id.courseColor)
+
+
+
 
 
 
@@ -95,6 +99,8 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
         courseTime1!!.text = course.courseTime1
         courseTime2!!.text = course.courseTime2
         courseTime3!!.text = course.courseTime3
+        courseColor!!.text = course.courseColor
+
 
 
         //중복 체크
@@ -137,6 +143,8 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
                 val time2 = dataModel!!.courseTime2
                 val time3 = dataModel!!.courseTime3
                 val title = dataModel!!.courseTitle
+                val color = dataModel!!.courseColor
+
 
                 Xtitle =dataModel!!.courseTitle.toString()
                 Xtime =dataModel!!.courseTime1.toString()
@@ -178,11 +186,12 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
 
             val mycourse = hashMapOf(
-                "email" to email,
+                "courseColor" to course.courseColor.toString(),
                 "courseTitle" to course.courseTitle.toString(),
                 "courseTime1" to course.courseTime1.toString(),
                 "courseTime2" to course.courseTime2.toString(),
-                "courseTime3" to course.courseTime3.toString()
+                "courseTime3" to course.courseTime3.toString(),
+                "email" to email
 
 
             )
@@ -261,10 +270,15 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
                 FBRef.CourseRef
                     .child(key)
-                    .setValue(mycourse(course.courseTitle.toString(),
+                    .setValue(mycourse(
+                        course.courseColor.toString(),
+                        course.courseTitle.toString(),
                         course.courseTime1.toString(),
                         course.courseTime2.toString(),
-                        course.courseTime3.toString(), email))
+                        course.courseTime3.toString(),
+                        email
+
+                        ))
 
                 Toast.makeText(
                     view?.rootView?.context,
