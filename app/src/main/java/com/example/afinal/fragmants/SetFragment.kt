@@ -28,32 +28,9 @@ class SetFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_set,container,false)
 
-        binding.logoutBtn.setOnClickListener{
-            Firebase.auth.signOut()
-
-            val intent = Intent(getActivity(), MainActivity::class.java)
-            startActivity(intent)
 
 
 
-        }
-
-
-        binding.comTap.setOnClickListener{
-            it.findNavController().navigate(R.id.action_setFragment_to_boardFragment)
-        }
-
-        binding.classTap.setOnClickListener{
-            it.findNavController().navigate(R.id.action_setFragment_to_classFragment)
-        }
-        binding.mapTap.setOnClickListener{
-            it.findNavController().navigate(R.id.action_setFragment_to_mapFragment)
-        }
-
-        binding.homeTap.setOnClickListener{
-            it.findNavController().navigate(R.id.action_setFragment_to_homeFragment)
-        }
-        // Inflate the layout for this fragment
         return binding.root
     }
 }

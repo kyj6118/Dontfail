@@ -39,8 +39,6 @@ class HomeFragment : Fragment() {
 
         binding.noticeView.setOnClickListener{
 
-            val intent = Intent(getActivity(), NoticeActivity::class.java)
-            startActivity(intent)
 
         }
 
@@ -57,6 +55,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.setTap.setOnClickListener{
+
+
             it.findNavController().navigate(R.id.action_homeFragment_to_setFragment)
         }
         // Inflate the layout for this fragment

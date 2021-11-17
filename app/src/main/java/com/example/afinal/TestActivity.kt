@@ -1,6 +1,7 @@
 package com.example.afinal
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
@@ -53,7 +54,7 @@ class TestActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 lateinit var mService:IGoogleAPIService
-internal lateinit var currentPlaces: MyPlaces
+internal var currentPlaces: MyPlaces? =null
 
 
 
@@ -117,13 +118,14 @@ internal lateinit var currentPlaces: MyPlaces
         mService.getNearbyPlaces(url)
             .enqueue(object : retrofit2.Callback<MyPlaces> {
                 override fun onResponse(call: Call<MyPlaces>, response: Response<MyPlaces>) {
+
                     currentPlaces = response.body()!!
                     if (response.isSuccessful) {
 
-                        for (i in 0 until response.body()!!.result!!.size)
+                        for (i in 0 until response.body()!!.results!!.size)
                         {
                             val markerOptions = MarkerOptions()
-                            val googlePlace = response.body()!!.result!![i]
+                            val googlePlace = response.body()!!.results!![i]
                             val lat = googlePlace.geometry!!.location!!.lat
                             val lng = googlePlace.geometry!!.location!!.lng
                             val placeName = googlePlace.name
@@ -131,13 +133,13 @@ internal lateinit var currentPlaces: MyPlaces
 
                             markerOptions.position(latLng)
                             markerOptions.title(placeName)
-                            if (typePlace.equals("hospital"))
-                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital))
-                            else if (typePlace.equals("tour"))
-                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_tour))
+                      /*      if (typePlace.equals("hospital"))
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_local))
+                            if (typePlace.equals("tour"))
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_tour_24))
                             if (typePlace.equals("restaurant"))
-                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_restaurant))
-                            else
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_restaurant_24))
+                            else*/
                                 markerOptions.icon(
                                     BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_BLUE
@@ -272,6 +274,8 @@ internal lateinit var currentPlaces: MyPlaces
         super.onStop()
     }
 
+
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -294,6 +298,16 @@ internal lateinit var currentPlaces: MyPlaces
 
 
         mMap.uiSettings.isZoomControlsEnabled= false
+
+
+
+        //MAke event click Marker
+      mMap!!.setOnMarkerClickListener { marker ->
+
+          Common.currentResult = currentPlaces!!.results!![Integer.parseInt(marker.snippet)]
+          startActivity(Intent(this,ViewPlace::class.java))
+          true
+      }
 
 
     }
