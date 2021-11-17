@@ -5,32 +5,31 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.afinal.Common.Common
 import com.example.afinal.Remote.IGoogleAPIService
 import com.example.afinal.VO.MyPlaces
-
+import com.example.afinal.databinding.ActivityTestBinding
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.example.afinal.databinding.ActivityTestBinding
-import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import noman.googleplaces.NRPlaces
+import noman.googleplaces.PlaceType
 import retrofit2.Call
 import retrofit2.Response
-import java.lang.StringBuilder
-import javax.security.auth.callback.Callback
+
 
 class TestActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -54,7 +53,7 @@ class TestActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 lateinit var mService:IGoogleAPIService
-internal var currentPlaces: MyPlaces? =null
+internal lateinit var currentPlaces: MyPlaces
 
 
 
@@ -168,14 +167,16 @@ internal var currentPlaces: MyPlaces? =null
 
     private fun getUrl(latitude: Double, longitude: Double, typePlace: String): String {
 
-        val googlePlaceUrl= StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+       val googlePlaceUrl= StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
         googlePlaceUrl.append("?location=$latitude,$longitude")
-        googlePlaceUrl.append("&radius=10000")
+        googlePlaceUrl.append("&radius=500")
         googlePlaceUrl.append("&type=$typePlace")
         googlePlaceUrl.append("&key=AIzaSyAEHJx5j_CUnp6jRgzLe3hoPiPVgLtxWrA")
 
         Log.d("URL_DEBUG",googlePlaceUrl.toString())
         return googlePlaceUrl.toString()
+
+
 
     }
 
@@ -256,7 +257,7 @@ internal var currentPlaces: MyPlaces? =null
                                 locationCallback,
                                 Looper.myLooper()
                             )
-                            mMap!!.isMyLocationEnabled = true
+                            mMap.isMyLocationEnabled = true
                         }
                 }
                 else{
@@ -289,15 +290,16 @@ internal var currentPlaces: MyPlaces? =null
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
 
-                mMap!!.isMyLocationEnabled = true
+                mMap.isMyLocationEnabled = true
 
             }
         }
         else
-            mMap!!.isMyLocationEnabled = true
+            mMap.isMyLocationEnabled = true
 
 
         mMap.uiSettings.isZoomControlsEnabled= false
+        mMap.uiSettings.isMyLocationButtonEnabled=true
 
 
 

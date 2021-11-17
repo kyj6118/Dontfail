@@ -16,10 +16,11 @@
 
 
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/photo"
             android:src="@drawable/ic_baseline_search_24"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 
 
@@ -60,13 +61,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-
+<!--
             <RatingBar
                 android:id="@+id/rating_bar"
                 android:max="5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                />-->
 
 
             <Button
@@ -75,6 +76,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.Button.Colored"
+                />
+
+            <Button
+                android:id="@+id/btn_more_review"
+                android:text="Show more review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+
+
+            <Button
+                android:id="@+id/btn_write_review"
+                android:text="write review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+
+
                 />
 
         </LinearLayout>
