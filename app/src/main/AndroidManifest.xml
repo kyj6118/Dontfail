@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final">
-        <activity android:name=".ViewPlace"></activity>
+        <activity android:name=".ReviewInsideActivity"></activity>
+        <activity android:name=".ViewPlaceReviewActivity" />
+        <activity android:name=".ReviewActivity" />
+        <activity android:name=".ViewPlace" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -16,6 +16,7 @@
         android:textColor="#ffffff"
         android:textSize="18dp"
         android:id="@+id/addButton"
+        android:visibility="visible"
         android:layout_marginRight="13dp"
         android:layout_marginLeft="8dp"/>
 

@@ -21,6 +21,8 @@ import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.example.afinal.R
 import com.example.afinal.VO.board
 import com.example.afinal.board.FreeBoardInsideActivity
@@ -149,8 +151,55 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
                 Xtitle =dataModel!!.courseTitle.toString()
                 Xtime =dataModel!!.courseTime1.toString()
 
+                if (Xtitle == course.courseTitle.toString()) {
+
+                    /* Toast.makeText(
+                         view?.rootView?.context,
+                         "Already same Course you have",
+                         Toast.LENGTH_SHORT
+
+                     ).show()*/
+                    Button!!.isVisible=false
+
+                }else if(Xtime == course.courseTime1.toString()){
+
+                    Toast.makeText(
+                        view?.rootView?.context,
+                        "The timetable overlaps",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
+                    Button!!.isVisible= false
+                }
+
+                else if(Xtime == course.courseTime2.toString() ){
+                    Button!!.isVisible= false
+
+                    Toast.makeText(
+                        view?.rootView?.context,
+                        "The timetable overlaps",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                else if(Xtime == course.courseTime3.toString()){
+
+                    Button!!.isVisible= false
+                    Toast.makeText(
+                        view?.rootView?.context,
+                        "The timetable overlaps",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+
+
 
             }
+
+
+
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                 TODO("Not yet implemented")
@@ -167,7 +216,12 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
+
         })
+
+
+
+
 
 
 
@@ -201,45 +255,9 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
 
 
-            if (Xtitle == course.courseTitle.toString()) {
-
-                Toast.makeText(
-                    view?.rootView?.context,
-                    "Already same Course you have",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-
-            else if(Xtime == course.courseTime1.toString()){
-
-                Toast.makeText(
-                    view?.rootView?.context,
-                    "The timetable overlaps",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            else if(Xtime == course.courseTime2.toString() ){
 
 
-                Toast.makeText(
-                    view?.rootView?.context,
-                    "The timetable overlaps",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
 
-            else if(Xtime == course.courseTime3.toString()){
-                Toast.makeText(
-                    view?.rootView?.context,
-                    "The timetable overlaps",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-
-            else {
 
 /*
 
@@ -288,7 +306,6 @@ class courseListAdapter(val courseList:MutableList<course>) : BaseAdapter() {
 
 
             }
-        }
 
 
 

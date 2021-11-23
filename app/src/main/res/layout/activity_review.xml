@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReviewActivity">
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:background="@color/maincolor"
+                    android:textSize="20dp"
+                    android:text="Write Review"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/white"
+                    android:layout_height="match_parent"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#999999"/>
+
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:hint="Place name"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#999999"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+
+            <TextView
+                android:id="@+id/place_address"
+                android:layout_margin="20dp"
+                android:hint="Place address"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#999999"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+            <EditText
+                android:id="@+id/contentArea"
+                android:layout_margin="20dp"
+                android:hint="place review"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#999999"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RatingBar
+                android:id="@+id/place_Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:stepSize="0.5"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="2.5"
+                android:progressTint="@color/maincolor" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/imageArea1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/album"
+                    android:layout_weight="1"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageView
+                    android:id="@+id/imageArea2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/album"
+                    app:layout_constraintStart_toEndOf="@+id/imageArea1"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageArea3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/album"
+                    app:layout_constraintStart_toEndOf="@+id/imageArea2"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageArea4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/album"
+                    app:layout_constraintStart_toEndOf="@+id/imageArea3"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_weight="1" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:text="write"
+                android:id="@+id/writeBtn"
+                android:background="@drawable/radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="50dp"
+                />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+</layout>

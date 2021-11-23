@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_centerVertical="true">
 
@@ -19,8 +19,8 @@
             android:layout_gravity="center"
             android:id="@+id/photo"
             android:src="@drawable/ic_baseline_search_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             />
 
 
@@ -61,13 +61,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-<!--
+
             <RatingBar
                 android:id="@+id/rating_bar"
                 android:max="5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />-->
+                />
 
 
             <Button

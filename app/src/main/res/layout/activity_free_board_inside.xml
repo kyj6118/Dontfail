@@ -40,13 +40,15 @@
 
             <ImageView
                 android:id="@+id/boardSettingIcon"
-                android:visibility="invisible"
                 android:layout_width="20dp"
                 android:layout_height="40dp"
-                android:src="@drawable/main_menu"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="10dp"
-                tools:ignore="MissingConstraints" />
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/main_menu"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

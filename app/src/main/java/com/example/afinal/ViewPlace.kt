@@ -1,5 +1,7 @@
 package com.example.afinal
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +9,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import com.bokchi.mysolelife.utils.FBRef
 import com.example.afinal.Remote.IGoogleAPIService
+import com.example.afinal.Schdule.course
+import com.example.afinal.Schdule.mycourse
+import com.example.afinal.VO.FBAuth
 import com.example.afinal.VO.PlaceDetail
+import com.example.afinal.VO.ReviewVO
+import com.example.afinal.board.FreeBoardInsideActivity
 import com.example.afinal.databinding.ActivityViewPlaceBinding
+import com.example.afinal.evaluate.EvaluateListAdater
 import com.google.android.gms.common.internal.service.Common
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,25 +36,40 @@ import java.lang.StringBuilder
 
 class ViewPlace : AppCompatActivity() {
 
-    private lateinit var binding:ActivityViewPlaceBinding
+    private lateinit var binding: ActivityViewPlaceBinding
 
 
-    internal lateinit var mService :IGoogleAPIService
-    var mPlace:PlaceDetail?=null
+    internal lateinit var mService: IGoogleAPIService
+    var mPlace: PlaceDetail? = null
+
+    private val reviewList = mutableListOf<ReviewVO>()
+    private val reviewKeyList = mutableListOf<String>()
+
+
+    private lateinit var reviewRVAdapter: ReviewListAdater
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_place)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_view_place)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_place)
 
-            mService = com.example.afinal.Common.Common.googleApiService
+        mService = com.example.afinal.Common.Common.googleApiService
 
-        binding.placeName.text=""
-        binding.placeAddress.text=""
-        binding.placeOpenHour.text=""
 
-        binding.btnShowMap.setOnClickListener{
+
+
+
+
+        binding.placeName.text = ""
+        binding.placeAddress.text = ""
+        binding.placeOpenHour.text = ""
+
+
+
+
+
+        binding.btnShowMap.setOnClickListener {
 
             val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mPlace!!.result!!.url))
             startActivity(mapIntent)
@@ -47,15 +78,18 @@ class ViewPlace : AppCompatActivity() {
         }
 
 
-        if(com.example.afinal.Common.Common.currentResult!!.photos !=null && com.example.afinal.Common.Common.currentResult!!.photos!!.size > 0)
+        if (com.example.afinal.Common.Common.currentResult!!.photos != null && com.example.afinal.Common.Common.currentResult!!.photos!!.size > 0)
             Picasso.with(this)
-                .load(getPhothOfPlace(com.example.afinal.Common.Common.currentResult!!.photos!![0].photo_reference!!,10000))
+                .load(
+                    getPhothOfPlace(
+                        com.example.afinal.Common.Common.currentResult!!.photos!![0].photo_reference!!,
+                        10000
+                    )
+                )
                 .into(binding.photo)
 
 
 
-/*
-
         if(com.example.afinal.Common.Common.currentResult!!.rating != null)
             binding.ratingBar.rating = com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
         else
@@ -67,10 +101,6 @@ class ViewPlace : AppCompatActivity() {
             binding.ratingBar.rating = com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
         else
             binding.ratingBar.visibility= View.GONE
-*/
-
-
-
 
 
 
@@ -78,15 +108,16 @@ class ViewPlace : AppCompatActivity() {
 
 
         if (com.example.afinal.Common.Common.currentResult!!.opening_hours != null)
-            binding.placeOpenHour.text="Open now : "+ com.example.afinal.Common.Common.currentResult!!.opening_hours!!.open_now
+            binding.placeOpenHour.text =
+                "Open now : " + com.example.afinal.Common.Common.currentResult!!.opening_hours!!.open_now
         else
-            binding.placeOpenHour.visibility=View.GONE
+            binding.placeOpenHour.visibility = View.GONE
 
 
         mService.getDetailPlace(getPlaceDetailUrl(com.example.afinal.Common.Common.currentResult!!.place_id!!))
-            .enqueue(object :retrofit2.Callback<PlaceDetail> {
+            .enqueue(object : retrofit2.Callback<PlaceDetail> {
                 override fun onFailure(call: Call<PlaceDetail>, t: Throwable) {
-                    Toast.makeText(baseContext,""+t.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "" + t.message, Toast.LENGTH_SHORT).show()
 
                 }
 
@@ -94,13 +125,41 @@ class ViewPlace : AppCompatActivity() {
                     mPlace = response!!.body()
 
                     binding.placeAddress.text = mPlace!!.result!!.formatted_address
-                    binding.placeName.text=mPlace!!.result!!.name
+                    binding.placeName.text = mPlace!!.result!!.name
                 }
 
 
             })
 
+
+        binding.btnWriteReview.setOnClickListener {
+
+
+
+            val intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("name", binding.placeName.text)
+            intent.putExtra("Address", binding.placeAddress.text)
+            startActivity(intent)
+
+
+        }
+
+
+        binding.btnMoreReview.setOnClickListener {
+
+
+
+            val intent = Intent(this, ViewPlaceReviewActivity::class.java)
+            intent.putExtra("name", binding.placeName.text)
+            intent.putExtra("Address", binding.placeAddress.text)
+            startActivity(intent)
+
+
+        }
     }
+
+
+
 
     private fun getPhothOfPlace(photo_reference: String, i: Int): String {
 
@@ -109,21 +168,21 @@ class ViewPlace : AppCompatActivity() {
         url.append("&photo_reference=$photo_reference")
         url.append("&key=AIzaSyAEHJx5j_CUnp6jRgzLe3hoPiPVgLtxWrA")
 
-        Log.d("URL_DEBUG",url.toString())
+        Log.d("URL_DEBUG", url.toString())
         return url.toString()
     }
 
-    }
 
     private fun getPlaceDetailUrl(placeId: String): String {
         val url = StringBuilder("https://maps.googleapis.com/maps/api/place/details/json")
-            url.append("?place_id=$placeId")
-            url.append("&key=AIzaSyAEHJx5j_CUnp6jRgzLe3hoPiPVgLtxWrA")
+        url.append("?place_id=$placeId")
+        url.append("&key=AIzaSyAEHJx5j_CUnp6jRgzLe3hoPiPVgLtxWrA")
 
 
 
-        Log.d("URL_DEBUG",url.toString())
+        Log.d("URL_DEBUG", url.toString())
         return url.toString()
     }
-    
+}
+
 
