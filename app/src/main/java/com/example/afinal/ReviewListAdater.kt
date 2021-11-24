@@ -42,7 +42,7 @@ class ReviewListAdater  (val reviewList:MutableList<ReviewVO>): BaseAdapter(){
 
 
         name!!.text=review.place_name
-        address!!.text=review.place_address
+        address!!.text=review.content
         rating!!.rating= review.place_rating!!
 
         return view!!

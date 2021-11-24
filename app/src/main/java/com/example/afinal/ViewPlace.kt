@@ -38,6 +38,7 @@ class ViewPlace : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewPlaceBinding
 
+    private  var Xtitle: String? = null
 
     internal lateinit var mService: IGoogleAPIService
     var mPlace: PlaceDetail? = null
@@ -69,6 +70,9 @@ class ViewPlace : AppCompatActivity() {
 
 
 
+
+
+
         binding.btnShowMap.setOnClickListener {
 
             val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mPlace!!.result!!.url))
@@ -90,17 +94,19 @@ class ViewPlace : AppCompatActivity() {
 
 
 
-        if(com.example.afinal.Common.Common.currentResult!!.rating != null)
-            binding.ratingBar.rating = com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
+        if (com.example.afinal.Common.Common.currentResult!!.rating != null)
+            binding.ratingBar.rating =
+                com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
         else
-            binding.ratingBar.visibility= View.GONE
+            binding.ratingBar.visibility = View.GONE
 
 
 
-        if(com.example.afinal.Common.Common.currentResult!!.rating != null)
-            binding.ratingBar.rating = com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
+        if (com.example.afinal.Common.Common.currentResult!!.rating != null)
+            binding.ratingBar.rating =
+                com.example.afinal.Common.Common.currentResult!!.rating.toFloat()
         else
-            binding.ratingBar.visibility= View.GONE
+            binding.ratingBar.visibility = View.GONE
 
 
 
@@ -126,10 +132,29 @@ class ViewPlace : AppCompatActivity() {
 
                     binding.placeAddress.text = mPlace!!.result!!.formatted_address
                     binding.placeName.text = mPlace!!.result!!.name
+
+                    Xtitle = mPlace!!.result!!.name.toString()
+
+                    getReviewData(Xtitle!!)
+                    Log.d("XTitle", Xtitle.toString())
                 }
 
 
             })
+
+        binding.Review.setOnItemClickListener { parent, view, position, id ->
+
+
+            val intent = Intent(this, ReviewInsideActivity::class.java)
+            intent.putExtra("key", reviewKeyList[position])
+            startActivity(intent)}
+
+
+
+
+
+
+
 
 
         binding.btnWriteReview.setOnClickListener {
@@ -145,20 +170,46 @@ class ViewPlace : AppCompatActivity() {
         }
 
 
-        binding.btnMoreReview.setOnClickListener {
-
-
-
-            val intent = Intent(this, ViewPlaceReviewActivity::class.java)
-            intent.putExtra("name", binding.placeName.text)
-            intent.putExtra("Address", binding.placeAddress.text)
-            startActivity(intent)
-
-
-        }
     }
 
+    private fun getReviewData(xtitle: String) {
 
+        reviewRVAdapter = ReviewListAdater(reviewList)
+        binding.Review.adapter = reviewRVAdapter
+
+
+        val db = Firebase.firestore
+
+        reviewList.clear()
+
+
+        db.collection("review")
+            .whereEqualTo("place_name", Xtitle.toString())
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+
+                    Log.d("data",document["place_name"].toString())
+
+
+                    reviewList.add(
+                        ReviewVO(
+                            document["place_name"].toString(),
+                            document["content"].toString(),
+                            document["place_rating"].toString().toFloat()
+                        )
+                    )
+
+                    reviewKeyList.add(document.id.toString())
+
+                }
+                reviewKeyList.reverse()
+                reviewList.reverse()
+                reviewRVAdapter.notifyDataSetChanged()
+
+            }
+
+    }
 
 
     private fun getPhothOfPlace(photo_reference: String, i: Int): String {

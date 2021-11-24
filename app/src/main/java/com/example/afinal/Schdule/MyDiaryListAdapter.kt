@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.afinal.VO.MyDairy
+import com.example.afinal.VO.calenderVO
 
-class MyDiaryListAdapter(val mydiaryList:MutableList<MyDairy>) : BaseAdapter() {
+class MyDiaryListAdapter(val calendarList:MutableList<calenderVO>) : BaseAdapter() {
     override fun getCount(): Int {
-        return mydiaryList.size
+        return calendarList.size
     }
 
     override fun getItem(position: Int): Any {
-        return  mydiaryList[position]
+        return  calendarList[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -31,12 +32,13 @@ class MyDiaryListAdapter(val mydiaryList:MutableList<MyDairy>) : BaseAdapter() {
         }
 
 
-        val diary = mydiaryList[position]
-        val diaryTime = view?.findViewById<TextView>(com.example.afinal.R.id.timeArea)
-        val diarycontent = view?.findViewById<TextView>(com.example.afinal.R.id.contentArea)
 
-        diaryTime!!.text=diary.time
-        diarycontent!!.text=diary.content
+        val calendar =  calendarList[position]
+        val content = view?.findViewById<TextView>(com.example.afinal.R.id.contentArea)
+
+
+
+            content?.text=calendar.content
 
 
 

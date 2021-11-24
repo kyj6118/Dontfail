@@ -8,6 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".ViewPlace">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -78,13 +82,12 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
 
-            <Button
-                android:id="@+id/btn_more_review"
-                android:text="Show more review"
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_height="200dp"
+                android:id="@+id/Review"
                 />
+
 
 
             <Button
@@ -101,6 +104,8 @@
 
 
     </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
 
