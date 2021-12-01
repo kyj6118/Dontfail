@@ -43,6 +43,7 @@ class GoogleCalenderActivity : AppCompatActivity() {
     private val calendarKeyList = mutableListOf<String>()
     var pro:ProgressDialog? = null
     var pra:ProgressDialog? = null
+    var prb:ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,20 +141,34 @@ class GoogleCalenderActivity : AppCompatActivity() {
 
 
 
+        alertDialog.findViewById<Button>(R.id.modifyBtn)?.setOnClickListener {
+
+
+            ModifyDialog(toString)
+
+
+
+        }
+
 
         alertDialog.findViewById<Button>(R.id.deleteBtn)?.setOnClickListener {
 
 
-            pra = ProgressDialog.show(this, "delete" , "\nwait")
 
             FBRef.calRef.child(toString).removeValue()
 
 
+
+            pra = ProgressDialog.show(this, "delete" , "\nwait")
+
             // 핸들러를 통해서 종료 작업을 한다.
             var handler = Handler()
             var thread = Runnable { pra?.cancel() }
-            handler.postDelayed(thread,1000) // 딜레이는 5초
+            handler.postDelayed(thread,2000) // 딜레이는 5초
             alertDialog.dismiss()
+
+
+
 
         }
 
@@ -161,7 +176,81 @@ class GoogleCalenderActivity : AppCompatActivity() {
 
 
 
+    }
 
+    private fun ModifyDialog(toString: String) {
+        val db = Firebase.firestore
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.calender_modift, null)
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+
+        val alertDialog = mBuilder.show()
+
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
+                val dataModel = dataSnapshot.getValue(calenderVO::class.java)
+
+
+                alertDialog.findViewById<TextView>(R.id.date)?.text = dataModel?.date
+                alertDialog.findViewById<EditText>(R.id.content)?.setText(dataModel?.content)
+
+
+            }
+
+
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.calRef.child(toString).addValueEventListener(postListener)
+
+
+
+
+        alertDialog.findViewById<Button>(R.id.modifyBtn)?.setOnClickListener {
+
+
+
+
+
+            val date =  alertDialog.findViewById<TextView>(R.id.date)?.text.toString()
+            val content = alertDialog.findViewById<EditText>(R.id.content)?.text.toString()
+            val email = FBAuth.getemail()
+            val confirm = FBAuth.getemail()+date
+
+
+            // 파이어베이스 store에 이미지를 저장하고 싶습니다
+            // 만약에 내가 게시글을 클릭했을 때, 게시글에 대한 정보를 받아와야 하는데
+            // 이미지 이름에 대한 정보를 모르기 때문에
+            // 이미지 이름을 문서의 key값으로 해줘서 이미지에 대한 정보를 찾기 쉽게 해놓음.
+
+
+
+            FBRef.calRef
+                .child(toString)
+                .setValue(calenderVO(content,date,email,confirm))
+
+
+
+            // 핸들러를 통해서 종료 작업을 한다.
+            prb = ProgressDialog.show(this, "modify" , "\nwait")
+
+            // 핸들러를 통해서 종료 작업을 한다.
+            var handler = Handler()
+            var thread = Runnable { prb?.cancel() }
+            handler.postDelayed(thread,2000) // 딜레이는 5초
+            alertDialog.dismiss()
+
+        }
 
 
     }

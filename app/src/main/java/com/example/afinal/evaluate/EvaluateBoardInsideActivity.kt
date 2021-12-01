@@ -72,12 +72,13 @@ class EvaluateBoardInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-            Toast.makeText(this, "수정 버튼을 눌렀습니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "modify button", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, EvaluateBoardModifyActivity::class.java)
             intent.putExtra("key", key)
             startActivity(intent)
         }
+
         alertDialog.findViewById<Button>(R.id.deletBtn)?.setOnClickListener {
 
             db.collection("evaluate").document(key)
@@ -86,7 +87,7 @@ class EvaluateBoardInsideActivity : AppCompatActivity() {
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
 
             FBRef.EvaluBoardRef.child(key).removeValue()
-            Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "success delete", Toast.LENGTH_LONG).show()
             finish()
 
         }
