@@ -161,6 +161,7 @@ class GoogleCalenderActivity : AppCompatActivity() {
 
             pra = ProgressDialog.show(this, "delete" , "\nwait")
 
+
             // 핸들러를 통해서 종료 작업을 한다.
             var handler = Handler()
             var thread = Runnable { pra?.cancel() }
