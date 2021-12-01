@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final">
-        <activity android:name=".board.BoardModifyActivity"></activity>
+        <activity android:name=".ReviewModifyActivity"></activity>
+        <activity android:name=".board.BoardModifyActivity" />
         <activity android:name=".Schdule.CalenderInsideActivity" />
         <activity android:name=".Schdule.GoogleCalenderActivity" />
         <activity android:name=".ReviewInsideActivity" />

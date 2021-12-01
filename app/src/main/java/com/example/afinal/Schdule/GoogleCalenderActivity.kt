@@ -64,6 +64,8 @@ class GoogleCalenderActivity : AppCompatActivity() {
                 diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
                 str = diaryTextView.text.toString()
 
+
+
                 getdata(str!!)
 
 

@@ -87,9 +87,9 @@ class ReviewInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-         /*   val intent = Intent(this, EvaluateBoardModifyActivity::class.java)
+          val intent = Intent(this, ReviewModifyActivity::class.java)
             intent.putExtra("key", key)
-            startActivity(intent)*/
+            startActivity(intent)
         }
         alertDialog.findViewById<Button>(R.id.deletBtn)?.setOnClickListener {
 
