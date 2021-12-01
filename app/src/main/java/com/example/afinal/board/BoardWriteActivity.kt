@@ -42,6 +42,9 @@ class BoardWriteActivity : AppCompatActivity() {
     private val TAG = BoardWriteActivity::class.java.simpleName
 
     private var isImageUpload1 = false
+    private var isImageUpload2 = false
+    private var isImageUpload3 = false
+    private var isImageUpload4 = false
     var firestore : FirebaseFirestore? = null
     private lateinit var auth: FirebaseAuth
     private lateinit var binding : ActivityBoardWriteBinding
@@ -107,10 +110,26 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
 
-            imageUpload1(key)
-            imageUpload2(key)
-            imageUpload3(key)
-            imageUpload4(key)
+
+            if(isImageUpload1 == true ) {
+                imageUpload1(key)
+            }
+
+            if(isImageUpload2 == true ) {
+                imageUpload2(key)
+            }
+
+
+            if(isImageUpload3 == true ) {
+                imageUpload3(key)
+            }
+
+
+
+            if(isImageUpload4 == true ) {
+                imageUpload4(key)
+            }
+
 
             Toast.makeText(this,"Sucess write board",Toast.LENGTH_LONG).show()
             finish()
@@ -128,18 +147,22 @@ class BoardWriteActivity : AppCompatActivity() {
         binding.imageArea2.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 99)
+            isImageUpload2 = true
         }
 
         binding.imageArea3.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 98)
+            isImageUpload3 = true
         }
 
 
         binding.imageArea4.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 97)
+            isImageUpload4 = true
         }
+
 
     }
 

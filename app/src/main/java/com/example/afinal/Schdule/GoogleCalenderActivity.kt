@@ -42,6 +42,7 @@ class GoogleCalenderActivity : AppCompatActivity() {
     private val calendarList = mutableListOf<calenderVO>()
     private val calendarKeyList = mutableListOf<String>()
     var pro:ProgressDialog? = null
+    var pra:ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,11 +80,20 @@ class GoogleCalenderActivity : AppCompatActivity() {
         }
 
 
+
+
+
+
         binding.calendarListView.setOnItemClickListener { parent, view, position, id ->
 
-            val intent = Intent(this, CalenderInsideActivity::class.java)
+        /*    val intent = Intent(this, CalenderInsideActivity::class.java)
             intent.putExtra("key", calendarKeyList[position])
-            startActivity(intent)
+            startActivity(intent)*/
+
+            showInside(calendarKeyList[position].toString())
+
+
+
 
 
         }
@@ -92,6 +102,70 @@ class GoogleCalenderActivity : AppCompatActivity() {
 
 
     }
+
+    private fun showInside(toString: String) {
+
+        val db = Firebase.firestore
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.calendar_inside_dialog, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+
+
+
+        val alertDialog = mBuilder.show()
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
+                val dataModel = dataSnapshot.getValue(calenderVO::class.java)
+
+                alertDialog.findViewById<TextView>(R.id.date)?.text = dataModel?.date
+                alertDialog.findViewById<TextView>(R.id.content)?.text = dataModel?.content
+
+
+            }
+
+
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.calRef.child(toString).addValueEventListener(postListener)
+
+
+
+
+        alertDialog.findViewById<Button>(R.id.deleteBtn)?.setOnClickListener {
+
+
+            pra = ProgressDialog.show(this, "delete" , "\nwait")
+
+            FBRef.calRef.child(toString).removeValue()
+
+
+            // 핸들러를 통해서 종료 작업을 한다.
+            var handler = Handler()
+            var thread = Runnable { pra?.cancel() }
+            handler.postDelayed(thread,1000) // 딜레이는 5초
+            alertDialog.dismiss()
+
+        }
+
+
+
+
+
+
+
+
+    }
+
 
     private fun getdata(str: String) {
         calendarRVAdapter = MyDiaryListAdapter(calendarList)
@@ -167,7 +241,7 @@ class GoogleCalenderActivity : AppCompatActivity() {
 
 
 
-            pro = ProgressDialog.show(this, date+"\n"+content , "\nwait")
+            pro = ProgressDialog.show(this, "save" , "\nwait")
 
             // 핸들러를 통해서 종료 작업을 한다.
             var handler = Handler()

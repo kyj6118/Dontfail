@@ -1,6 +1,7 @@
 package com.example.afinal
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.afinal.VO.FBAuth
 import com.example.afinal.VO.Review
 import com.example.afinal.VO.ReviewVO
 import com.example.afinal.VO.evaluate
+import com.example.afinal.board.BoardModifyActivity
 import com.example.afinal.board.FreeBoardInsideActivity
 import com.example.afinal.databinding.ActivityFreeBoardInsideBinding
 import com.example.afinal.databinding.ActivityReviewInsideBinding
@@ -80,7 +82,7 @@ class ReviewInsideActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("Evaluate Modify/Delete")
+            .setTitle("Modify/Delete")
 
         val alertDialog = mBuilder.show()
 
@@ -107,7 +109,7 @@ class ReviewInsideActivity : AppCompatActivity() {
                     )
                 }
 
-            FBRef.EvaluBoardRef.child(key).removeValue()
+            FBRef.ReviewRef.child(key).removeValue()
             Toast.makeText(this, "delet Success", Toast.LENGTH_LONG).show()
             finish()
 
@@ -255,5 +257,8 @@ class ReviewInsideActivity : AppCompatActivity() {
             }
         })
     }
+
+
+
 }
 

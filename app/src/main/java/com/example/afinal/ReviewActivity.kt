@@ -89,11 +89,19 @@ class ReviewActivity : AppCompatActivity() {
             if(isImageUpload1 == true ) {
                 imageUpload1(key)
             }
-            else if(isImageUpload2 == true ) {
+
+
+            if(isImageUpload2 == true ) {
                 imageUpload1(key)
-            }else if(isImageUpload3 == true ) {
+            }
+
+
+            if(isImageUpload3 == true ) {
                 imageUpload1(key)
-            }else if(isImageUpload4 == true ) {
+            }
+
+
+            if(isImageUpload4 == true ) {
                 imageUpload1(key)
             }
 

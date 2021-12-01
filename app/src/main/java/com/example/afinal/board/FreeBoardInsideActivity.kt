@@ -1,11 +1,13 @@
 
 package com.example.afinal.board
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,9 @@ import com.bokchi.mysolelife.utils.FBRef
 import com.bumptech.glide.Glide
 import com.example.afinal.R
 import com.example.afinal.VO.FBAuth
+import com.example.afinal.VO.board
 import com.example.afinal.VO.commentVO
+import com.example.afinal.VO.evaluate
 import com.example.afinal.databinding.ActivityFreeBoardInsideBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.lang.Exception
 
 
 class FreeBoardInsideActivity : AppCompatActivity() {
@@ -137,7 +142,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
                     )
                 )
 
-            Toast.makeText(this, "댓글 입력 완료", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
             binding.commentArea.setText("")
 
 
@@ -148,41 +153,49 @@ class FreeBoardInsideActivity : AppCompatActivity() {
 
     //게시글 파이어스토어에서 받아오기
     private fun boardData(key: String) {
-        val db = Firebase.firestore
-        val docRef = db.collection("board").document(key)
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                try {
+
+                    val dataModel = dataSnapshot.getValue(board::class.java)
+
+                    binding.titleArea.text = dataModel!!.title
+                    binding.textArea.text = dataModel!!.contents
+                    binding.timeArea.text = dataModel!!.time
+                    binding.nameArea.text = dataModel!!.email
 
 
+                    val myUid = FBAuth.getemail()
+                    val writerUid = dataModel.email
 
-        docRef
-            .get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-
-
-                    binding.titleArea.setText(document.get("title").toString())
-                    binding.nameArea.setText(document.get("email").toString())
-                    binding.timeArea.setText(document.get("time").toString())
-                    binding.textArea.setText(document.get("contents").toString())
-
-                    val myUid = FBAuth.getUid()
-                    val writeUid = document.get("id").toString()
+                    Log.d(ContentValues.TAG, "getemail" +  FBAuth.getemail() )
+                    Log.d(ContentValues.TAG, "writeUid" +  writerUid )
 
 
-                    //자신의 게시글이 아니면 수정 삭제 불가능
-                    if(myUid.equals(writeUid)){
+                    if (myUid.equals(writerUid)) {
+                        Log.d(ContentValues.TAG, "내가 쓴 글")
                         binding.boardSettingIcon.isVisible = true
+                    } else {
+                        Log.d(ContentValues.TAG, "내가 쓴 글 아님")
                     }
 
+                } catch (e: Exception) {
+                    Log.d(ContentValues.TAG, "getemail" +  FBAuth.getemail() )
+                    Log.d(ContentValues.TAG, "삭제완료")
 
-
-                } else {
-                    Log.d(TAG, "No such document")
                 }
+
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
             }
+        }
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
 
     }
 
@@ -194,7 +207,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
         val mBuilder =AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("게시글 수정,삭제")
+            .setTitle("Board Modify/delete")
 
 
 
@@ -203,7 +216,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener{
             Toast.makeText(this,"Modify button",Toast.LENGTH_LONG).show()
-            val intent = Intent(this,FreeBoardModifyActivity::class.java)
+            val intent = Intent(this,BoardModifyActivity::class.java)
             intent.putExtra("key", key)
             startActivity(intent)
         }

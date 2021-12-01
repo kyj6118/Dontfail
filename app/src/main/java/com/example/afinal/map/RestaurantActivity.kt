@@ -9,6 +9,7 @@ import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import com.bokchi.mysolelife.utils.FBRef
 import com.example.afinal.R
+import com.example.afinal.ReviewInsideActivity
 import com.example.afinal.ReviewListAdater
 import com.example.afinal.VO.ReviewVO
 import com.example.afinal.VO.evaluate
@@ -52,7 +53,7 @@ class RestaurantActivity : AppCompatActivity() {
         binding.ReviewListView.setOnItemClickListener { parent, view, position, id ->
 
 
-            val intent = Intent(this, EvaluateBoardInsideActivity::class.java)
+            val intent = Intent(this, ReviewInsideActivity::class.java)
             intent.putExtra("key", reviewKeyList[position])
             startActivity(intent)}
 
