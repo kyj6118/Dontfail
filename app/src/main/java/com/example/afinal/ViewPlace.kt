@@ -18,6 +18,7 @@ import com.example.afinal.Schdule.mycourse
 import com.example.afinal.VO.FBAuth
 import com.example.afinal.VO.PlaceDetail
 import com.example.afinal.VO.ReviewVO
+import com.example.afinal.VO.evaluate
 import com.example.afinal.board.FreeBoardInsideActivity
 import com.example.afinal.databinding.ActivityViewPlaceBinding
 import com.example.afinal.evaluate.EvaluateListAdater
@@ -160,7 +161,6 @@ class ViewPlace : AppCompatActivity() {
         binding.btnWriteReview.setOnClickListener {
 
 
-
             val intent = Intent(this, ReviewActivity::class.java)
             intent.putExtra("name", binding.placeName.text)
             intent.putExtra("Address", binding.placeAddress.text)
@@ -183,31 +183,36 @@ class ViewPlace : AppCompatActivity() {
         reviewList.clear()
 
 
-        db.collection("review")
-            .whereEqualTo("place_name", Xtitle.toString())
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    Log.d("data",document["place_name"].toString())
+                reviewList.clear()
 
+                for (dataModel in dataSnapshot.children) {
 
-                    reviewList.add(
-                        ReviewVO(
-                            document["place_name"].toString(),
-                            document["content"].toString(),
-                            document["place_rating"].toString().toFloat()
-                        )
-                    )
+                    Log.d(TAG, dataModel.toString())
+//                    dataModel.key
 
-                    reviewKeyList.add(document.id.toString())
+                    val item = dataModel.getValue(ReviewVO::class.java)
+                    reviewList.add(item!!)
+                    reviewKeyList.add(dataModel.key.toString())
 
                 }
+
+
                 reviewKeyList.reverse()
                 reviewList.reverse()
                 reviewRVAdapter.notifyDataSetChanged()
 
+
             }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        FBRef.ReviewRef.addValueEventListener(postListener)
 
     }
 

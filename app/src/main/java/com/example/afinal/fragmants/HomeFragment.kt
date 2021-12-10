@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.afinal.R
+import com.example.afinal.board.FreeBoardActivity
 import com.example.afinal.databinding.FragmentHomeBinding
+import com.example.afinal.evaluate.EvaluateBoard
 import com.example.afinal.notice.NoticeActivity
 
 
@@ -21,7 +23,7 @@ import com.example.afinal.notice.NoticeActivity
  */
 class HomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,26 +37,33 @@ class HomeFragment : Fragment() {
     ): View? {
 
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        binding.noticeView.setOnClickListener{
+        binding.FreeBtn.setOnClickListener{
+            val intent = Intent(getActivity(), FreeBoardActivity::class.java)
+            startActivity(intent)
+        }
 
+        binding.evalBtn.setOnClickListener{
+
+            val intent = Intent(getActivity(), EvaluateBoard::class.java)
+            startActivity(intent)
 
         }
 
 
-        binding.comTap.setOnClickListener{
-           it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        binding.comTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
         }
 
-        binding.classTap.setOnClickListener{
+        binding.classTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_classFragment)
         }
-        binding.mapTap.setOnClickListener{
+        binding.mapTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_mapFragment)
         }
 
-        binding.setTap.setOnClickListener{
+        binding.setTap.setOnClickListener {
 
 
             it.findNavController().navigate(R.id.action_homeFragment_to_setFragment)
@@ -62,5 +71,5 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
-
 }
+

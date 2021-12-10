@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#FFEAD8"
         android:textColor="@color/black"
-        android:text="Additional schedule"
+        android:text="Add schedule"
         android:gravity="center"
         android:textSize="30dp"
 
@@ -31,7 +31,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="schedule write"
+        android:hint="(Time) Schedule"
         android:textColor="@color/black"/>
 
     <Button

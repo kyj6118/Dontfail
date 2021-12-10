@@ -11,7 +11,7 @@
         android:id="@+id/editBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="board modify"
+        android:text="modify"
         android:layout_margin="20dp"
         android:background="@drawable/radious_maincolor"/>
 
@@ -19,7 +19,7 @@
         android:id="@+id/deletBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="board delet"
+        android:text="delet"
         android:layout_margin="20dp"
         android:background="@drawable/radious_maincolor"/>
 

@@ -207,7 +207,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
         val mBuilder =AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("Board Modify/delete")
+            .setTitle("Modify/delete")
 
 
 
@@ -226,7 +226,7 @@ class FreeBoardInsideActivity : AppCompatActivity() {
         alertDialog.findViewById<Button>(R.id.deletBtn)?.setOnClickListener{
 
             FBRef.boardRef.child(key).removeValue()
-            Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Sucess delete", Toast.LENGTH_LONG).show()
             finish()
 
 

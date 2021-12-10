@@ -78,7 +78,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
 
-            Toast.makeText(this, "게시글 입력 완료", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
             finish()
 
 

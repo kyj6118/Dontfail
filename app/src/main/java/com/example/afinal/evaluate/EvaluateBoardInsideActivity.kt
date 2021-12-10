@@ -67,7 +67,7 @@ class EvaluateBoardInsideActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("Evaluate Modify/Delete")
+            .setTitle("Modify/Delete")
 
         val alertDialog = mBuilder.show()
 

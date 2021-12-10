@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Free Board"
+            android:text="Forum"
             android:textColor="@color/white"
            android:background="@drawable/radious_maincolor"
             android:textSize="20dp"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Secret Board"
+            android:text="Blind Forum"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:background="@drawable/radious_maincolor"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:text="Evaluate Board"
+            android:text="course reputation"
             android:textColor="@color/white"
             android:background="@drawable/radious_maincolor"
             android:textSize="20dp"
@@ -100,8 +100,7 @@
                 android:id="@+id/homeTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/home_" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/comTap"
@@ -128,8 +127,7 @@
                 android:id="@+id/setTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/set_" />
+                android:layout_weight="1" />
 
 
         </LinearLayout>

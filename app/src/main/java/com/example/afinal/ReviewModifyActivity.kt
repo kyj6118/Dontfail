@@ -197,7 +197,7 @@ class ReviewModifyActivity : AppCompatActivity() {
 
         FBRef.ReviewRef
             .child(key)
-            .setValue(ReviewVO(place_name,content,rating,place_Address,email))
+            .setValue(ReviewVO(place_name,place_Address,content,rating,email))
 
         Toast.makeText(this, "success modify", Toast.LENGTH_LONG).show()
 

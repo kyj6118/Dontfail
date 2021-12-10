@@ -34,6 +34,7 @@ class ReviewListAdater  (val reviewList:MutableList<ReviewVO>): BaseAdapter(){
 
         val name = view?.findViewById<TextView>(R.id.place_name)
         val address = view?.findViewById<TextView>(R.id.place_area)
+        val content = view?.findViewById<TextView>(R.id.place_content)
         val rating = view?.findViewById<RatingBar>(R.id.review_Rating)
 
 
@@ -42,7 +43,8 @@ class ReviewListAdater  (val reviewList:MutableList<ReviewVO>): BaseAdapter(){
 
 
         name!!.text=review.place_name
-        address!!.text=review.content
+        address!!.text=review.place_address
+        content!!.text= review.content
         rating!!.rating= review.place_rating!!
 
         return view!!

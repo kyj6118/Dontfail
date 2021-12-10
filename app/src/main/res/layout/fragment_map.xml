@@ -90,8 +90,7 @@
                 android:id="@+id/homeTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/home_" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/comTap"
@@ -118,8 +117,7 @@
                 android:id="@+id/setTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/set_" />
+                android:layout_weight="1" />
 
 
         </LinearLayout>
